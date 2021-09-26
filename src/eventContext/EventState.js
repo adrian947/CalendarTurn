@@ -19,13 +19,21 @@ export const EventState = (props) => {
   });
   const activeClean = () => ({
     type: types.ACTIVE_CLEAN,
-    
   });
 
-  const upDateEvent = (newEvent)=>({
+  const upDateEvent = (newEvent) => ({
     type: types.UPDATE_EVENT,
-    payload: newEvent
-  })
+    payload: newEvent,
+  });
+
+  const customEvent = (event) => ({
+    type: types.ADD_EVENT__CUSTOM,
+    payload: event,
+  });
+  const customEventXdays = (events) => ({
+    type: types.ADD_EVENTS__CUSTOMXDAYS,
+    payload: events,
+  });
 
   return (
     <EventContext.Provider
@@ -35,6 +43,8 @@ export const EventState = (props) => {
         activeEvent,
         activeClean,
         upDateEvent,
+        customEvent,
+        customEventXdays,
         state,
       }}
     >

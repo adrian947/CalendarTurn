@@ -8,6 +8,7 @@ import { aDateForModal } from "./helpers/aDate";
 import { EventContext } from "../eventContext/EventContext";
 import { useSelector, useDispatch } from "react-redux";
 
+
 const Calendari = () => {
   const [openModal, setOpenModal] = useState(false);
   const [infoOfEvent, setInfoOfEvent] = useState({});
@@ -32,6 +33,7 @@ const Calendari = () => {
   //seleccion de varias horas
   const handleSelect = (info) => {
     const infoForModal = aDateForModal(info);
+    
 
     setInfoOfEvent({
       start: infoForModal.startnew,
@@ -41,9 +43,9 @@ const Calendari = () => {
   };
 
   //seleccion de una hora
-  const handleDateClick = (info) => {
+  const handleDateClick = (info) => {    
     setOpenModal(true);
-    setInfoOfEvent({ start: info.dateStr });
+    setInfoOfEvent({...infoOfEvent, start: info.dateStr });
   };
 
   //seleccion de un evento
@@ -94,6 +96,11 @@ const Calendari = () => {
           dateFin={dateFin}
         />
       )}
+
+  
+
+
+
     </>
   );
 };

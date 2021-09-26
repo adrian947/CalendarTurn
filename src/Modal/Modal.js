@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { EventContext } from "../eventContext/EventContext";
 import { aDate } from "./../Calendar/helpers/aDate";
 import { useDispatch, useSelector } from "react-redux";
+import { CustomModal } from "./CustomModal";
 
 const Modal = ({ setOpenModal, infoOfEvent, dateFin }) => {
   const dispatch = useDispatch();
@@ -14,16 +15,17 @@ const Modal = ({ setOpenModal, infoOfEvent, dateFin }) => {
     title: "",
     obs: "",
   });
-  
+  const [customModalOpen, setCustomModalOpen] = useState(false);
+
   useEffect(() => {
     if (active) {
       setFormValues({
-        // ...formValues,
+        //...formValues,
         start: active[0].start,
         end: active[0].end,
         title: active[0].title,
         obs: active[0].obs,
-        id: active[0].id
+        id: active[0].id,
       });
     }
     //eslint-disable-next-line
@@ -32,7 +34,7 @@ const Modal = ({ setOpenModal, infoOfEvent, dateFin }) => {
   const { pushEvent, addEvent, upDateEvent } = useContext(EventContext);
 
   const { start, end, title, obs } = formValues;
-  
+
   const handleInputChange = (e) => {
     setFormValues({
       ...formValues,
@@ -47,13 +49,17 @@ const Modal = ({ setOpenModal, infoOfEvent, dateFin }) => {
     setFormValues(newValues);
     setOpenModal(false);
     pushEvent(newValues);
-    
-    
-    if (active) {    
+
+    if (active) {
       dispatch(upDateEvent(formValues));
     } else {
       dispatch(addEvent(newValues));
     }
+  };
+
+  const handleCustomClick = (e) => {
+    e.preventDefault();
+    setCustomModalOpen(true);
   };
 
   return (
@@ -108,11 +114,17 @@ const Modal = ({ setOpenModal, infoOfEvent, dateFin }) => {
           </textarea>
         </div>
         {active ? (
-          <input type="submit" value="Editar Consulta" className="boton" />
+          <>
+            <input type="submit" value="Editar Consulta" className="boton" />
+            <button className="boton custom" onClick={handleCustomClick}>
+              Customizar Consulta
+            </button>
+          </>
         ) : (
           <input type="submit" value="Agregar Consulta" className="boton" />
         )}
       </form>
+      {customModalOpen && <CustomModal setOpenModal={setOpenModal} />}
     </div>
   );
 };

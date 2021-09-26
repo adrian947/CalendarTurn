@@ -1,3 +1,13 @@
+html{
+  box-sizing: border-box;
+}
+*, *::after, *::before{
+  box-sizing: inherit;
+}
+
+
+
+
 body {
   background-color: rgb(58, 56, 56);
   overflow: hidden;
@@ -18,7 +28,7 @@ body {
   background-color: #fff;
   position: absolute;
 
-  top: 0;
+  top: -20rem;
   left: 0;
   right: 0;
   bottom: 0;
@@ -61,7 +71,9 @@ body {
 .campo {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  justify-content: flex-end;
 }
 .campo label {
   flex-basis: 4rem;
@@ -95,4 +107,40 @@ body {
 }
 .boton:hover {
   background-color: rgb(37, 110, 134);
+}
+.custom{
+  margin-top: 1rem;
+  font-size: .8rem;
+}
+.contenedor{
+  background-color: #fff;
+  padding: .5rem;
+  width: 30rem;
+  height: 20rem;
+  display: block;
+  margin-left: -2px;
+  margin-top: 2rem;
+  position: absolute;  
+  left: 0;
+  right: 0;
+  border: 2px solid rgb(112, 105, 105);
+  text-align: center;  
+}
+.titulo{
+  margin: 0;
+}
+.campo__custom{
+  display: flex;
+  flex-direction: column;
+}
+
+.label__custom{
+  padding: 1rem;
+  font-weight: bold;
+}
+.input__custom{
+  height: 40px;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
